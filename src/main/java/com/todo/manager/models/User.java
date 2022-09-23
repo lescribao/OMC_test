@@ -1,5 +1,7 @@
 package com.todo.manager.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -11,10 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String username;
 
+    @NotNull
     private String password;
 
     @Embedded

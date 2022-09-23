@@ -1,5 +1,7 @@
 package com.todo.manager.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +11,10 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String title;
 
-    private Boolean completed;
+    private Boolean completed = false;
 
     @ManyToOne
     @JoinColumn(name="user_id")
