@@ -1,6 +1,4 @@
 package com.todo.manager.controllers;
-
-import com.todo.manager.dtos.PagDTO;
 import com.todo.manager.dtos.TodoDTO;
 import com.todo.manager.models.Todo;
 import com.todo.manager.services.TodoService;
@@ -18,10 +16,25 @@ public class TodoController {
 
     @GetMapping("/todos")
     @ResponseStatus(HttpStatus.OK)
-    public List<Todo> getTodos (@RequestBody PagDTO pagDTO) {
+    public List<Todo> getTodos (@RequestParam(required = false) String sortDir, @RequestParam(required = false) String sortBy) {
 
-        return todoService.getTodos();
+        return todoService.getTodos(sortDir, sortBy);
     }
+
+    @GetMapping("/todos/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Todo> getTodoByUsername(@PathVariable String username) {
+
+        return todoService.getTodoByUsername(username);
+    }
+
+    @GetMapping("/todos/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Todo> getTodoByTitle(@PathVariable String title) {
+
+        return todoService.getTodoByTitle(title);
+    }
+
 
     @GetMapping("/todo/id")
     @ResponseStatus(HttpStatus.OK)
